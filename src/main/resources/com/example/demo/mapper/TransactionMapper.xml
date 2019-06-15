@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TransactionMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.po.Transaction">
+    <id column="txhash" jdbcType="CHAR" property="txhash" />
+    <result column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="size" jdbcType="BIGINT" property="size" />
+    <result column="weight" jdbcType="INTEGER" property="weight" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="total_input" jdbcType="DOUBLE" property="totalInput" />
+    <result column="total_output" jdbcType="DOUBLE" property="totalOutput" />
+    <result column="fees" jdbcType="DOUBLE" property="fees" />
+    <result column="confirm" jdbcType="INTEGER" property="confirm" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    txhash, blockhash, size, weight, time, total_input, total_output, fees, confirm
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transaction
+    where txhash = #{txhash,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from transaction
+    where txhash = #{txhash,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.po.Transaction">
+    insert into transaction (txhash, blockhash, size, 
+      weight, time, total_input, 
+      total_output, fees, confirm
+      )
+    values (#{txhash,jdbcType=CHAR}, #{blockhash,jdbcType=CHAR}, #{size,jdbcType=BIGINT}, 
+      #{weight,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, #{totalInput,jdbcType=DOUBLE}, 
+      #{totalOutput,jdbcType=DOUBLE}, #{fees,jdbcType=DOUBLE}, #{confirm,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.po.Transaction">
+    insert into transaction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="txhash != null">
+        txhash,
+      </if>
+      <if test="blockhash != null">
+        blockhash,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="totalInput != null">
+        total_input,
+      </if>
+      <if test="totalOutput != null">
+        total_output,
+      </if>
+      <if test="fees != null">
+        fees,
+      </if>
+      <if test="confirm != null">
+        confirm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="txhash != null">
+        #{txhash,jdbcType=CHAR},
+      </if>
+      <if test="blockhash != null">
+        #{blockhash,jdbcType=CHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=BIGINT},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalInput != null">
+        #{totalInput,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutput != null">
+        #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="fees != null">
+        #{fees,jdbcType=DOUBLE},
+      </if>
+      <if test="confirm != null">
+        #{confirm,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.po.Transaction">
+    update transaction
+    <set>
+      <if test="blockhash != null">
+        blockhash = #{blockhash,jdbcType=CHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalInput != null">
+        total_input = #{totalInput,jdbcType=DOUBLE},
+      </if>
+      <if test="totalOutput != null">
+        total_output = #{totalOutput,jdbcType=DOUBLE},
+      </if>
+      <if test="fees != null">
+        fees = #{fees,jdbcType=DOUBLE},
+      </if>
+      <if test="confirm != null">
+        confirm = #{confirm,jdbcType=INTEGER},
+      </if>
+    </set>
+    where txhash = #{txhash,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.po.Transaction">
+    update transaction
+    set blockhash = #{blockhash,jdbcType=CHAR},
+      size = #{size,jdbcType=BIGINT},
+      weight = #{weight,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      total_input = #{totalInput,jdbcType=DOUBLE},
+      total_output = #{totalOutput,jdbcType=DOUBLE},
+      fees = #{fees,jdbcType=DOUBLE},
+      confirm = #{confirm,jdbcType=INTEGER}
+    where txhash = #{txhash,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TransactionDetailMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.po.TransactionDetail">
+    <id column="tx_detail_id" jdbcType="BIGINT" property="txDetailId" />
+    <result column="txid" jdbcType="CHAR" property="txid" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="amount" jdbcType="DOUBLE" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tx_detail_id, txid, address, type, amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transaction_detail
+    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from transaction_detail
+    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.po.TransactionDetail">
+    insert into transaction_detail (tx_detail_id, txid, address, 
+      type, amount)
+    values (#{txDetailId,jdbcType=BIGINT}, #{txid,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, 
+      #{type,jdbcType=TINYINT}, #{amount,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.po.TransactionDetail">
+    insert into transaction_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="txDetailId != null">
+        tx_detail_id,
+      </if>
+      <if test="txid != null">
+        txid,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="txDetailId != null">
+        #{txDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="txid != null">
+        #{txid,jdbcType=CHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.po.TransactionDetail">
+    update transaction_detail
+    <set>
+      <if test="txid != null">
+        txid = #{txid,jdbcType=CHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.po.TransactionDetail">
+    update transaction_detail
+    set txid = #{txid,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      amount = #{amount,jdbcType=DOUBLE}
+    where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
+  </update>
+</mapper>

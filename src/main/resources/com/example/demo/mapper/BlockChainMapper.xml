@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BlockChainMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.po.BlockChain">
+    <id column="blockchain_id" jdbcType="INTEGER" property="blockchainId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="shortname" jdbcType="VARCHAR" property="shortname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    blockchain_id, name, type, shortname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from blockchain
+    where blockchain_id = #{blockchainId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from blockchain
+    where blockchain_id = #{blockchainId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.po.BlockChain">
+    insert into blockchain (blockchain_id, name, type, 
+      shortname)
+    values (#{blockchainId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{shortname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.po.BlockChain">
+    insert into blockchain
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blockchainId != null">
+        blockchain_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="shortname != null">
+        shortname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blockchainId != null">
+        #{blockchainId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null">
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.po.BlockChain">
+    update blockchain
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="shortname != null">
+        shortname = #{shortname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where blockchain_id = #{blockchainId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.po.BlockChain">
+    update blockchain
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      shortname = #{shortname,jdbcType=VARCHAR}
+    where blockchain_id = #{blockchainId,jdbcType=INTEGER}
+  </update>
+</mapper>

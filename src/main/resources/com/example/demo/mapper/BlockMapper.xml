@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BlockMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.po.Block">
+    <id column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="blockchain_id" jdbcType="INTEGER" property="blockchainId" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="transactions" jdbcType="INTEGER" property="transactions" />
+    <result column="size" jdbcType="BIGINT" property="size" />
+    <result column="difficulty" jdbcType="DOUBLE" property="difficulty" />
+    <result column="prev_blockhash" jdbcType="CHAR" property="prevBlockhash" />
+    <result column="next_blockhash" jdbcType="CHAR" property="nextBlockhash" />
+    <result column="output_total" jdbcType="DOUBLE" property="outputTotal" />
+    <result column="fees" jdbcType="DOUBLE" property="fees" />
+    <result column="merkle_root" jdbcType="CHAR" property="merkleRoot" />
+    <result column="miner" jdbcType="VARCHAR" property="miner" />
+    <result column="timestamp" jdbcType="TIMESTAMP" property="timestamp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    blockhash, blockchain_id, height, time, transactions, size, difficulty, prev_blockhash, 
+    next_blockhash, output_total, fees, merkle_root, miner, timestamp
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from block
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.po.Block">
+    insert into block (blockhash, blockchain_id, height, 
+      time, transactions, size, 
+      difficulty, prev_blockhash, next_blockhash, 
+      output_total, fees, merkle_root, 
+      miner, timestamp)
+    values (#{blockhash,jdbcType=CHAR}, #{blockchainId,jdbcType=INTEGER}, #{height,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP}, #{transactions,jdbcType=INTEGER}, #{size,jdbcType=BIGINT}, 
+      #{difficulty,jdbcType=DOUBLE}, #{prevBlockhash,jdbcType=CHAR}, #{nextBlockhash,jdbcType=CHAR}, 
+      #{outputTotal,jdbcType=DOUBLE}, #{fees,jdbcType=DOUBLE}, #{merkleRoot,jdbcType=CHAR}, 
+      #{miner,jdbcType=VARCHAR}, #{timestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.po.Block">
+    insert into block
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blockhash != null">
+        blockhash,
+      </if>
+      <if test="blockchainId != null">
+        blockchain_id,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="transactions != null">
+        transactions,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="difficulty != null">
+        difficulty,
+      </if>
+      <if test="prevBlockhash != null">
+        prev_blockhash,
+      </if>
+      <if test="nextBlockhash != null">
+        next_blockhash,
+      </if>
+      <if test="outputTotal != null">
+        output_total,
+      </if>
+      <if test="fees != null">
+        fees,
+      </if>
+      <if test="merkleRoot != null">
+        merkle_root,
+      </if>
+      <if test="miner != null">
+        miner,
+      </if>
+      <if test="timestamp != null">
+        timestamp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blockhash != null">
+        #{blockhash,jdbcType=CHAR},
+      </if>
+      <if test="blockchainId != null">
+        #{blockchainId,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transactions != null">
+        #{transactions,jdbcType=INTEGER},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=BIGINT},
+      </if>
+      <if test="difficulty != null">
+        #{difficulty,jdbcType=DOUBLE},
+      </if>
+      <if test="prevBlockhash != null">
+        #{prevBlockhash,jdbcType=CHAR},
+      </if>
+      <if test="nextBlockhash != null">
+        #{nextBlockhash,jdbcType=CHAR},
+      </if>
+      <if test="outputTotal != null">
+        #{outputTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="fees != null">
+        #{fees,jdbcType=DOUBLE},
+      </if>
+      <if test="merkleRoot != null">
+        #{merkleRoot,jdbcType=CHAR},
+      </if>
+      <if test="miner != null">
+        #{miner,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.po.Block">
+    update block
+    <set>
+      <if test="blockchainId != null">
+        blockchain_id = #{blockchainId,jdbcType=INTEGER},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transactions != null">
+        transactions = #{transactions,jdbcType=INTEGER},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=BIGINT},
+      </if>
+      <if test="difficulty != null">
+        difficulty = #{difficulty,jdbcType=DOUBLE},
+      </if>
+      <if test="prevBlockhash != null">
+        prev_blockhash = #{prevBlockhash,jdbcType=CHAR},
+      </if>
+      <if test="nextBlockhash != null">
+        next_blockhash = #{nextBlockhash,jdbcType=CHAR},
+      </if>
+      <if test="outputTotal != null">
+        output_total = #{outputTotal,jdbcType=DOUBLE},
+      </if>
+      <if test="fees != null">
+        fees = #{fees,jdbcType=DOUBLE},
+      </if>
+      <if test="merkleRoot != null">
+        merkle_root = #{merkleRoot,jdbcType=CHAR},
+      </if>
+      <if test="miner != null">
+        miner = #{miner,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null">
+        timestamp = #{timestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.po.Block">
+    update block
+    set blockchain_id = #{blockchainId,jdbcType=INTEGER},
+      height = #{height,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      transactions = #{transactions,jdbcType=INTEGER},
+      size = #{size,jdbcType=BIGINT},
+      difficulty = #{difficulty,jdbcType=DOUBLE},
+      prev_blockhash = #{prevBlockhash,jdbcType=CHAR},
+      next_blockhash = #{nextBlockhash,jdbcType=CHAR},
+      output_total = #{outputTotal,jdbcType=DOUBLE},
+      fees = #{fees,jdbcType=DOUBLE},
+      merkle_root = #{merkleRoot,jdbcType=CHAR},
+      miner = #{miner,jdbcType=VARCHAR},
+      timestamp = #{timestamp,jdbcType=TIMESTAMP}
+    where blockhash = #{blockhash,jdbcType=CHAR}
+  </update>
+</mapper>
