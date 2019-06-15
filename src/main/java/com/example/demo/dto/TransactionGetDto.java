@@ -1,14 +1,13 @@
 package com.example.demo.dto;
 
-import com.example.demo.po.TransactionDetail;
+import com.example.demo.vo.TxDetail;
 
 import java.util.Date;
 import java.util.List;
 
-public class TransactionListDto {
+public class TransactionGetDto {
     private String txhash;
 
-    private String blockhash;
 
     private Long size;
 
@@ -24,7 +23,7 @@ public class TransactionListDto {
 
     private Integer confirm;
 
-    private List<TransactionDetail> txdetails;
+    private List<TxDetail> txdetails;
 
     public String getTxhash() {
         return txhash;
@@ -34,13 +33,6 @@ public class TransactionListDto {
         this.txhash = txhash;
     }
 
-    public String getBlockhash() {
-        return blockhash;
-    }
-
-    public void setBlockhash(String blockhash) {
-        this.blockhash = blockhash;
-    }
 
     public Long getSize() {
         return size;
@@ -98,11 +90,11 @@ public class TransactionListDto {
         this.confirm = confirm;
     }
 
-    public List<TransactionDetail> getTxdetails() {
+    public List<TxDetail> getTxdetails() {
         return txdetails;
     }
 
-    public void setTxdetails(List<TransactionDetail> txdetails) {
+    public void setTxdetails(List<TxDetail> txdetails) {
         this.txdetails = txdetails;
     }
 }

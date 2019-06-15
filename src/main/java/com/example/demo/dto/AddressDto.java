@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.po.TransactionDetail;
+import com.example.demo.vo.TxDetail;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class AddressDto {
     private Double finalBalance;
     private String txhash;
     private Integer noTxSize;
-    private List<TransactionDetail> txdetails;
+    private List<TxDetail> txdetails;
 
     public String getAddress() {
         return address;
@@ -52,11 +53,11 @@ public class AddressDto {
         this.noTxSize = noTxSize;
     }
 
-    public List<TransactionDetail> getTxdetails() {
+    public List<TxDetail> getTxdetails() {
         return txdetails;
     }
 
-    public void setTxdetails(List<TransactionDetail> txdetails) {
+    public void setTxdetails(List<TxDetail> txdetails) {
         this.txdetails = txdetails;
     }
 }
