@@ -5,7 +5,7 @@ import java.util.Date;
 public class BlockIndexDto {
     private String blockhash;
     private Integer height;
-    private Date time;
+    private Long time;
     private Integer transactions;
     private String miner;
     private Long size;
@@ -26,11 +26,11 @@ public class BlockIndexDto {
         this.height = height;
     }
 
-    public Date getTime() {
+    public Long getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 

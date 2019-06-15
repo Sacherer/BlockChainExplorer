@@ -20,12 +20,12 @@ public class TransactionController {
     public List<TransactionIndexDto> txIndex(){
         ArrayList<TransactionIndexDto> transactionIndexDtos = new ArrayList<>();
         TransactionIndexDto txIndex = new TransactionIndexDto();
-        txIndex.setTime(new Date());
+        txIndex.setTime(new Date().getTime());
         txIndex.setTotalOutput((double)12312421);
         txIndex.setTxhash("c2b30b0516135b0d0b9b646c3b3b9c66425e86bb1cee773e019eed56030967a6");
         transactionIndexDtos.add(txIndex);
         TransactionIndexDto txIndex2 = new TransactionIndexDto();
-        txIndex2.setTime(new Date());
+        txIndex2.setTime(new Date().getTime());
         txIndex2.setTotalOutput((double)12312421);
         txIndex2.setTxhash("c2b30b0516135b0d0b9b646c3b3b9c66425e86bb1cee773e019eed56030967a6");
         transactionIndexDtos.add(txIndex2);
@@ -37,7 +37,7 @@ public class TransactionController {
         transactionGetDto.setConfirm(0);
         transactionGetDto.setFees(0.8);
         transactionGetDto.setSize((long)192);
-        transactionGetDto.setTime(new Date());
+        transactionGetDto.setTime(new Date().getTime());
         transactionGetDto.setTotalInput(0.31008597);
         transactionGetDto.setTotalOutput(0.30992593);
         transactionGetDto.setTxhash("9cd08b5651ac3dd2bdc763f3bf718cd91325265416741dfd2b12b8e41cfdd0b1");

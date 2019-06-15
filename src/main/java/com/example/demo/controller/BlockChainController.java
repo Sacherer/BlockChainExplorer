@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AddressDto;
 import com.example.demo.dto.BlockDetailDto;
+import com.example.demo.dto.TransactionSearchDto;
 import com.example.demo.vo.TxDetail;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,11 +30,11 @@ public class BlockChainController {
         blockDetailDto.setNextBlockhash("00000000000000000025c889729b9f97cb3fc683742601fd61c7e481a7e2c951");
         blockDetailDto.setOutputTotal(1647.4593939);
         blockDetailDto.setPrevBlockhash("00000000000000000006a0173f90d900aefe5f7bef705f7dbdabe9b7077e06dd");
-        blockDetailDto.setTime(new Date());
-        blockDetailDto.setTimestamp(new Date());
+        blockDetailDto.setTime(new Date().getTime());
+        blockDetailDto.setTimestamp(new Date().getTime());
         blockDetailDto.setTransactions(28671);
         blockDetailDto.setSize((long)1225462);
-        blockDetailDto.setTxtime(new Date());
+        blockDetailDto.setTxtime(new Date().getTime());
         ArrayList<TxDetail> txDetails = new ArrayList<>();
         TxDetail txDetail = new TxDetail();
         txDetail.setAddress("1CK6KHY6MAg1vmRQ4PAafKYDrg1ejbH1cE ");
@@ -54,6 +55,8 @@ public class BlockChainController {
         addressDto.setAddress("1Ma2DrB78K7jmAwaomqZNRMCvgQrNjE2QC");
         addressDto.setFinalBalance(0.0);
         addressDto.setNoTxSize(107);
+        addressDto.setConfirm(11);
+        addressDto.setTime(new Date().getTime());
         addressDto.setTotalReceived(0.65650635);
         addressDto.setTxhash("12ba70fe122e4e17411100dc349692bf25eeb1222c837b85b93f5a2f358a6197");
         ArrayList<TxDetail> txDetails = new ArrayList<>();
@@ -69,5 +72,31 @@ public class BlockChainController {
         txDetails.add(txDetail2);
         addressDto.setTxdetails(txDetails);
         return addressDto;
+    }
+    @RequestMapping("/blockByTxhash/{blockChainId}/{Txhash}")
+    public TransactionSearchDto getTransaction(@PathVariable String Txhash, @PathVariable String blockChainId){
+        TransactionSearchDto transactionSearchDto = new TransactionSearchDto();
+        transactionSearchDto.setConfirm(11);
+        transactionSearchDto.setFees(0.1);
+        transactionSearchDto.setHeight(11111);
+        transactionSearchDto.setSize((long)192);
+        transactionSearchDto.setTime(new Date().getTime());
+        transactionSearchDto.setTotalInput(0.31008597);
+        transactionSearchDto.setTotalOutput(0.30992593);
+        transactionSearchDto.setTxhash("9cd08b5651ac3dd2xdc763f3bf718cd91325265416741dfd2b12b8e41cfdd0b1");
+        transactionSearchDto.setWeight(718);
+        ArrayList<TxDetail> txDetails = new ArrayList<>();
+        TxDetail txDetail = new TxDetail();
+        txDetail.setAddress("1CK6KHY6MHgYvmRQ1PAafKYDrg1ejbH1cE");
+        txDetail.setType((byte)2);
+        txDetail.setAmount((double)3);
+        txDetails.add(txDetail);
+        TxDetail txDetail2 = new TxDetail();
+        txDetail2.setAddress("1CK6KMY6MHgYvmQQ4PAafKYDrg1ejbH1cE");
+        txDetail2.setType((byte)1);
+        txDetail2.setAmount((double)2);
+        txDetails.add(txDetail2);
+        transactionSearchDto.setTxdetails(txDetails);
+        return transactionSearchDto;
     }
 }

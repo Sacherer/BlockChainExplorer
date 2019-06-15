@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TransactionIndexDto {
     private String txhash;
-    private Date time;
+    private Long time;
     private Double totalOutput;
 
     public String getTxhash() {
@@ -15,11 +15,11 @@ public class TransactionIndexDto {
         this.txhash = txhash;
     }
 
-    public Date getTime() {
+    public Long getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 

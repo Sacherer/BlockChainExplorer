@@ -1,8 +1,8 @@
 package com.example.demo.dto;
 
-import com.example.demo.po.TransactionDetail;
 import com.example.demo.vo.TxDetail;
 
+import java.util.Date;
 import java.util.List;
 
 public class AddressDto {
@@ -11,6 +11,25 @@ public class AddressDto {
     private Double finalBalance;
     private String txhash;
     private Integer noTxSize;
+    private Long time;
+    private Integer confirm;
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
+    public Integer getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(Integer confirm) {
+        this.confirm = confirm;
+    }
+
     private List<TxDetail> txdetails;
 
     public String getAddress() {

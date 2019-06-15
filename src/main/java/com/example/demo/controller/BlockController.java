@@ -27,7 +27,7 @@ public class BlockController {
         blockIndexDto.setHeight(580770);
         blockIndexDto.setMiner("SlushPool");
         blockIndexDto.setSize((long)1225464);
-        blockIndexDto.setTime(new Date());
+        blockIndexDto.setTime(new Date().getTime());
         blockIndexDto.setTransactions(2867);
         blockIndexDtos.add(blockIndexDto);
 
@@ -36,7 +36,7 @@ public class BlockController {
         blockIndexDto2.setHeight(580770);
         blockIndexDto2.setMiner("SlushPool");
         blockIndexDto2.setSize((long)1225464);
-        blockIndexDto2.setTime(new Date());
+        blockIndexDto2.setTime(new Date().getTime());
         blockIndexDto2.setTransactions(2867);
         blockIndexDtos.add(blockIndexDto2);
         return blockIndexDtos;
@@ -55,11 +55,11 @@ public class BlockController {
         blockDetailDto.setNextBlockhash("00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951");
         blockDetailDto.setOutputTotal(1647.45939539);
         blockDetailDto.setPrevBlockhash("00000000000000000006a0673f90d900aefe5f7bef705f7dbdabe9b7077e06dd");
-        blockDetailDto.setTime(new Date());
-        blockDetailDto.setTimestamp(new Date());
+        blockDetailDto.setTime(new Date().getTime());
+        blockDetailDto.setTimestamp(new Date().getTime());
         blockDetailDto.setTransactions(2867);
         blockDetailDto.setSize((long)1225464);
-        blockDetailDto.setTxtime(new Date());
+        blockDetailDto.setTxtime(new Date().getTime());
         ArrayList<TxDetail> txDetails = new ArrayList<>();
         TxDetail txDetail = new TxDetail();
         txDetail.setAddress("1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE ");
@@ -75,15 +75,15 @@ public class BlockController {
         return blockDetailDto;
     }
 
-    @RequestMapping("/blockList")
-    public List<BlockIndexDto> blockList(){
+    @RequestMapping("/blockList/{startDate}/{endDate}")
+    public List<BlockIndexDto> blockList(@PathVariable String startDate,@PathVariable String endDate){
         ArrayList<BlockIndexDto> blockIndexDtos = new ArrayList<>();
         BlockIndexDto blockIndexDto = new BlockIndexDto();
         blockIndexDto.setBlockhash("00000000000000000018165ff0bbbc2a93493c693d45dd65c6a8dcbb881f51fb");
         blockIndexDto.setHeight(580770);
         blockIndexDto.setMiner("SlushPo1ol");
         blockIndexDto.setSize((long)1225464);
-        blockIndexDto.setTime(new Date());
+        blockIndexDto.setTime(new Date().getTime());
         blockIndexDto.setTransactions(2867);
         blockIndexDtos.add(blockIndexDto);
 
@@ -92,7 +92,7 @@ public class BlockController {
         blockIndexDto2.setHeight(580770);
         blockIndexDto2.setMiner("Slush1Pool");
         blockIndexDto2.setSize((long)1225464);
-        blockIndexDto2.setTime(new Date());
+        blockIndexDto2.setTime(new Date().getTime());
         blockIndexDto2.setTransactions(2867);
         blockIndexDtos.add(blockIndexDto2);
         return blockIndexDtos;

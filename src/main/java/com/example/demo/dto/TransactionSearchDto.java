@@ -2,10 +2,9 @@ package com.example.demo.dto;
 
 import com.example.demo.vo.TxDetail;
 
-import java.util.Date;
 import java.util.List;
 
-public class TransactionGetDto {
+public class TransactionSearchDto {
     private String txhash;
 
 
@@ -25,6 +24,8 @@ public class TransactionGetDto {
 
     private List<TxDetail> txdetails;
 
+    private Integer height;
+
     public String getTxhash() {
         return txhash;
     }
@@ -32,7 +33,6 @@ public class TransactionGetDto {
     public void setTxhash(String txhash) {
         this.txhash = txhash;
     }
-
 
     public Long getSize() {
         return size;
@@ -96,5 +96,13 @@ public class TransactionGetDto {
 
     public void setTxdetails(List<TxDetail> txdetails) {
         this.txdetails = txdetails;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
     }
 }
