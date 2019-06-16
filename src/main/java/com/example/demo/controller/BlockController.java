@@ -2,8 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.BlockDetailDto;
 import com.example.demo.dto.BlockIndexDto;
-import com.example.demo.dto.TransactionIndexDto;
-import com.example.demo.po.TransactionDetail;
 import com.example.demo.vo.TxDetail;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;

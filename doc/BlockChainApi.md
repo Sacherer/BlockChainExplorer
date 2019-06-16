@@ -35,7 +35,7 @@ successResponse:
 |    size|   Long |  
 
 
-##2 块详细信息
+## 2 块详细信息
 
 调用该API，根据区块高度查询区块详细信息  
 ```json
