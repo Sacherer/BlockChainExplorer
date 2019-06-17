@@ -23,7 +23,7 @@ public interface BlockChainApi {
     JSONObject getBlockHeaders(@PathVariable Integer count, @PathVariable String blockhash);
 
     @GetMapping("/rest/blockhashbyheight/{height}.json")
-    JSONObject getBlockhashByHeight(@PathVariable String height);
+    JSONObject getBlockhashByHeight(@PathVariable Integer height);
 
     @GetMapping("/rest/mempool/info.json")
     JSONObject getMempoolInfo();

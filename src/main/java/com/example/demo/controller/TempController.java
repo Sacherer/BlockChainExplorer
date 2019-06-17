@@ -15,13 +15,13 @@ public class TempController {
     private BlockChainApi blockChainApi;
     @RequestMapping("/test")
     public String getTest(){
-//        JSONObject chinInfo = blockChainApi.getChinInfo();
-//        return chinInfo.toJSONString();
+        JSONObject chinInfo = blockChainApi.getChinInfo();
+        String s = chinInfo.toJSONString();
 
 //        JSONObject transactions = blockChainApi.getTransactions("12ba70fe122e4e17411100dc349692bf25eeb1222c837b85b93f5a2f358a6197");
 //        String s = transactions.toJSONString();
 
-//        JSONObject blockhashByHeight = blockChainApi.getBlockhashByHeight("580994");
+//        JSONObject blockhashByHeight = blockChainApi.getBlockhashByHeight(580994);
 //        String s = blockhashByHeight.toJSONString();
 
 //        JSONObject blockHeaders = blockChainApi.getBlockHeaders("2", "00000000000000000018a65ff0bbbc2a93493c693d05dd65c6a8dcbb881f55fb");
@@ -36,8 +36,8 @@ public class TempController {
 //        JSONObject mempoolInfo = blockChainApi.getMempoolInfo();
 //        String s = mempoolInfo.toJSONString();
 
-        JSONObject nodetailBlocks = blockChainApi.getNodetailBlocks("00000000000000000018a65ff0bbbc2a93493c693d05dd65c6a8dcbb881f55fb");
-        String s = nodetailBlocks.toJSONString();
+//        JSONObject nodetailBlocks = blockChainApi.getNodetailBlocks("00000000000000000018a65ff0bbbc2a93493c693d05dd65c6a8dcbb881f55fb");
+//        String s = nodetailBlocks.toJSONString();
 
 
         return s;
