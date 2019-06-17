@@ -1,9 +1,12 @@
 package com.example.demo.api;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @FeignClient(name = "bitcoin",url = "http://localhost:18332")
 public interface BlockChainApi {
@@ -20,7 +23,7 @@ public interface BlockChainApi {
     JSONObject getNodetailBlocks(@PathVariable String blockhash);
 
     @GetMapping("/rest/headers/{count}/{blockhash}.json")
-    JSONObject getBlockHeaders(@PathVariable Integer count, @PathVariable String blockhash);
+    List<JSONObject> getBlockHeaders(@PathVariable Integer count, @PathVariable String blockhash);
 
     @GetMapping("/rest/blockhashbyheight/{height}.json")
     JSONObject getBlockhashByHeight(@PathVariable Integer height);

@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.BlockDetailDto;
 import com.example.demo.dto.BlockIndexDto;
+import com.example.demo.service.BlockService;
 import com.example.demo.vo.TxDetail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,26 +19,13 @@ import java.util.List;
 @RequestMapping("/block")
 public class BlockController {
 
-    @RequestMapping("/blockIndex")
-    public List<BlockIndexDto> blockIndex(){
-        ArrayList<BlockIndexDto> blockIndexDtos = new ArrayList<>();
-        BlockIndexDto blockIndexDto = new BlockIndexDto();
-        blockIndexDto.setBlockhash("00000000000000000018a65ff0bbbc2a93493c693d05dd65c6a8dcbb881f55fb");
-        blockIndexDto.setHeight(580770);
-        blockIndexDto.setMiner("SlushPool");
-        blockIndexDto.setSize((long)1225464);
-        blockIndexDto.setTime(new Date().getTime());
-        blockIndexDto.setTransactions(2867);
-        blockIndexDtos.add(blockIndexDto);
+    @Autowired
+    private BlockService blockService;
 
-        BlockIndexDto blockIndexDto2 = new BlockIndexDto();
-        blockIndexDto2.setBlockhash("00000000000000000018a65ff0bbbc2a93493c693d05dd65c6a8dcbb881f55ff");
-        blockIndexDto2.setHeight(580770);
-        blockIndexDto2.setMiner("SlushPool");
-        blockIndexDto2.setSize((long)1225464);
-        blockIndexDto2.setTime(new Date().getTime());
-        blockIndexDto2.setTransactions(2867);
-        blockIndexDtos.add(blockIndexDto2);
+    @RequestMapping("/blockIndex")
+    public List<BlockIndexDto> blockIndex() throws Throwable {
+        List<BlockIndexDto> blockIndexDtos =blockService.getBlockIndex();
+
         return blockIndexDtos;
     }
     @RequestMapping("/blockDetail/{height}")
