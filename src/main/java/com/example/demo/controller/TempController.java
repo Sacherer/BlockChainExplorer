@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.api.BlockChainApi;
 import com.example.demo.api.JsonRpcApi;
+import com.example.demo.scheduled.BitcoinScheduled;
+import com.example.demo.service.BitconinSyncService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +21,12 @@ public class TempController {
     private BlockChainApi blockChainApi;
     @Autowired
     private JsonRpcApi jsonRpcApi;
+    @Autowired
+    private BitconinSyncService bitconinSyncService;
+//    @Autowired
+//    private BitcoinScheduled bitcoinScheduled;
     @RequestMapping("/test")
-    public List<JSONObject> getTest() throws Throwable {
+    public void getTest() throws Throwable {
 //        JSONObject chinInfo = blockChainApi.getChinInfo();
 //        String s = chinInfo.toJSONString();
 
@@ -30,7 +36,7 @@ public class TempController {
 //        JSONObject blockhashByHeight = blockChainApi.getBlockhashByHeight(1543972);
 //        String s = blockhashByHeight.toJSONString();
 
-        List<JSONObject> blockHeaders = blockChainApi.getBlockHeaders(4, "00000000000003899051eca575b4d28f896d8d0946e1346bc94a278dcb533c6e");
+//        List<JSONObject> blockHeaders = blockChainApi.getBlockHeaders(4, "00000000000003899051eca575b4d28f896d8d0946e1346bc94a278dcb533c6e");
 
 
 //        JSONObject blocks = blockChainApi.getBlocks("000000000000034e8361c788833e6213059ef46bb09744188d9278fde2a00945");
@@ -49,6 +55,10 @@ public class TempController {
 //        String s = blockByHash.toJSONString();
 //        JSONObject getAddress = jsonRpcApi.getAddressByHash("n2Byre52T9PZ6n8nbLVX7HgSuymW9kNxgj");
 //        String s = getAddress.toJSONString();
-        return  blockHeaders;
+
+//        return  blockHeaders;
+//        bitcoinScheduled.setScheduled();
+        bitconinSyncService.syncBlockData("00000000000000132f53e3783098f3b117c26d0b17efc909dba1aabf650249a2");
     }
+
 }
