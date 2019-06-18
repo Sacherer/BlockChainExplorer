@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.api.BlockChainApi;
 import com.example.demo.mapper.BlockMapper;
+import com.example.demo.mapper.TransactionDetailMapper;
 import com.example.demo.mapper.TransactionMapper;
 import com.example.demo.po.Block;
 import com.example.demo.po.Transaction;
+import com.example.demo.po.TransactionDetail;
 import com.example.demo.service.BitconinSyncService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,8 @@ public class BitconinSyncServiceImpl implements BitconinSyncService {
     @Autowired
     private TransactionMapper transactionMapper;
 
+    @Autowired
+    private TransactionDetailMapper transactionDetailMapper;
     @Override
     @Async
     @Transactional
@@ -103,6 +107,38 @@ public class BitconinSyncServiceImpl implements BitconinSyncService {
         //todo set totaloutput
         transaction.setTotalOutput(null);
         transactionMapper.insert(transaction);
+        String txid = txObject.getString("txid");
+        JSONArray vin = txObject.getJSONArray("vin");
+        JSONArray vout = txObject.getJSONArray("vout");
+        for (Object ovin : vin) {
+            JSONObject vinObject = new JSONObject(((LinkedHashMap)ovin));
+            vint(txid,vinObject);
+        }
+        for (Object ovout : vout) {
+            JSONObject voutObject = new JSONObject(((LinkedHashMap)ovout));
+            vout(txid,voutObject);
+        }
+    }
+
+    @Override
+    public void vout(String txid, JSONObject voutObject) {
+        TransactionDetail transactionDetail = new TransactionDetail();
+        transactionDetail.setTxid(txid);
+        transactionDetail.setAmount(voutObject.getDouble("value"));
+        transactionDetail.setType((byte)1);
+//        JSONObject scriptPubKey = voutObject.getJSONObject("scriptPubKey");
+//        JSONArray addresses = scriptPubKey.getJSONArray("addresses");
+//        if(addresses!=null&&!addresses.isEmpty()){
+//            String addressStr = addresses.getString(0);
+//            transactionDetail.setAddress(addressStr);
+//        }
+        transactionDetail.setAddress(voutObject.getJSONObject("scriptPubKey").getString("addresses"));
+        transactionDetailMapper.insert(transactionDetail);
+    }
+
+    @Override
+    public void vint(String txid, JSONObject vinObject) {
+
     }
 
 }

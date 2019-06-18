@@ -53,7 +53,7 @@ public class TempController {
 //        JSONObject getAddress = jsonRpcApi.getAddressByHash("n2Byre52T9PZ6n8nbLVX7HgSuymW9kNxgj");
 //        String s = getAddress.toJSONString();
 //        return  blockHeaders;
-        syncService.syncBlockData("000000000000038c79111230af144f5dffb8be3b1e1686c09346f213fac00ef0");
+        syncService.syncBlockData("000000000008b24be48bcdb8b1764fa073836f7e84374606db0450109921c56e");
     }
 
 }

@@ -21,10 +21,10 @@
     delete from transaction_detail
     where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.example.demo.po.TransactionDetail">
-    insert into transaction_detail (tx_detail_id, txid, address, 
+  <insert id="insert" parameterType="com.example.demo.po.TransactionDetail" keyProperty="txDetailId" useGeneratedKeys="true">
+    insert into transaction_detail ( txid, address,
       type, amount)
-    values (#{txDetailId,jdbcType=BIGINT}, #{txid,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, 
+    values (#{txid,jdbcType=CHAR}, #{address,jdbcType=VARCHAR},
       #{type,jdbcType=TINYINT}, #{amount,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.example.demo.po.TransactionDetail">

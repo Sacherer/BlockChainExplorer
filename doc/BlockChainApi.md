@@ -92,7 +92,7 @@ successResponse:
 |    txhash|   String |  交易哈希
 |    txtime|   Long |  交易时间
 |    address|   String |  地址
-|    type|   Byte |  是否是支出、收入 1支持 2收入
+|    type|   Byte |   1支出 2收入
 |    amount|   Double | 
 
 ## 3、块查看更多页面
