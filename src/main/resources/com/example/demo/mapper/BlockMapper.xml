@@ -196,4 +196,8 @@
       timestamp = #{timestamp,jdbcType=TIMESTAMP}
     where blockhash = #{blockhash,jdbcType=CHAR}
   </update>
+  <select id="selectByEnd" resultType="java.lang.Integer">
+    select height from block order by height desc limit 1
+  </select>
+
 </mapper>

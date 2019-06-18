@@ -36,7 +36,7 @@ public class BlockServiceImpl implements BlockService {
             blockIndexDto.setTransactions(blockHeader.getInteger("nTx"));
             blockIndexDto.setHeight(blockHeader.getInteger("height"));
             blockIndexDto.setBlockhash(blockHeader.getString("hash"));
-            blockIndexDto.setTime(new Date(1000*blockHeader.getLong("time")).getTime());
+            blockIndexDto.setTime(blockHeader.getLong("time"));
             //todo
             blockIndexDto.setMiner(null);
             blocks.add(blockIndexDto);

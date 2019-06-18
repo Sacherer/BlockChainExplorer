@@ -1,7 +1,9 @@
 package com.example.demo.mapper;
 
 import com.example.demo.po.Transaction;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TransactionMapper {
     int deleteByPrimaryKey(String txhash);
 

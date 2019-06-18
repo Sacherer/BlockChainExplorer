@@ -1,7 +1,9 @@
 package com.example.demo.mapper;
 
 import com.example.demo.po.BlockChain;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface BlockChainMapper {
     int deleteByPrimaryKey(Integer blockchainId);
 
