@@ -199,5 +199,18 @@
   <select id="selectByEnd" resultType="java.lang.Integer">
     select height from block order by height desc limit 1
   </select>
-
+  <resultMap id="BlockIndexDto" type="com.example.demo.dto.BlockIndexDto">
+    <id column="blockhash" jdbcType="CHAR" property="blockhash" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="transactions" jdbcType="INTEGER" property="transactions" />
+    <result column="size" jdbcType="BIGINT" property="size" />
+    <result column="miner" jdbcType="VARCHAR" property="miner" />
+  </resultMap>
+<!--  getBlockIndex-->
+  <select id="getBlockIndex" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block order by height desc limit 5
+  </select>
 </mapper>

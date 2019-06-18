@@ -37,7 +37,7 @@ public class BitconinSyncServiceImpl implements BitconinSyncService {
     @Autowired
     private TransactionDetailMapper transactionDetailMapper;
     @Override
-    @Async
+//    @Async
     @Transactional
     public void syncBlockData(String blockHash) {
 
