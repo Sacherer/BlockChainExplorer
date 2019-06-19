@@ -92,7 +92,7 @@ successResponse:
 |    txhash|   String |  交易哈希
 |    txtime|   Long |  交易时间
 |    address|   String |  地址
-|    type|   Byte |   1支出 2收入
+|    type|   Byte |   1收入 0支出
 |    amount|   Double | 
 
 ## 3、块查看更多页面
@@ -200,7 +200,7 @@ successResponse:
 |    fees|   Double |   |
 |    confirm|   Integer |   次数|
 |    address|   String |  地址
-|    type|   Byte |  是否是支出、收入 1支持 2收入
+|    type|   Byte |  1收入 0支出
 |    amount|   Double | 
 
 ## 6 搜索区块信息
@@ -261,7 +261,7 @@ successResponse:
 |    txhash|   String |  交易哈希
 |    txtime|   Long |  交易时间
 |    address|   String |  地址
-|    type|   Byte |  是否是支出、收入 1支持 2收入
+|    type|   Byte |  1收入 0支出
 |    amount|   Double | 
 
 ## 7 搜索地址信息
@@ -301,7 +301,7 @@ successResponse:
 |    noTxSize|   Double |  
 |    txhash|   String |  交易哈希
 |    address|   String |  地址
-|    type|   Byte |  是否是支出、收入 1支持 2收入
+|    type|   Byte |  1收入 0支出
 |    amount|   Double | 
 |    time|   Long | 时间戳  |
 |    confirm|   Integer |   次数|
@@ -350,5 +350,5 @@ successResponse:
 |    fees|   Double |   |
 |    confirm|   Integer |   次数|
 |    address|   String |  地址
-|    type|   Byte |  是否是支出、收入 1支持 2收入
+|    type|   Byte |  1收入 0支出
 |    amount|   Double | 

@@ -1,9 +1,8 @@
 package com.example.demo.mapper;
 
 import com.example.demo.po.TransactionDetail;
-import org.springframework.stereotype.Repository;
 
-@Repository
+
 public interface TransactionDetailMapper {
     int deleteByPrimaryKey(Long txDetailId);
 
