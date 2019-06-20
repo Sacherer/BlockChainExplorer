@@ -1,9 +1,7 @@
 package com.example.demo.dto;
 
-import com.example.demo.vo.TxDetail;
 import com.example.demo.vo.Txs;
 
-import java.util.Date;
 import java.util.List;
 
 public class BlockDetailDto {

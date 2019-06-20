@@ -2,7 +2,6 @@ package com.example.demo.dto;
 
 import com.example.demo.vo.TxDetail;
 
-import java.util.Date;
 import java.util.List;
 
 public class AddressDto {

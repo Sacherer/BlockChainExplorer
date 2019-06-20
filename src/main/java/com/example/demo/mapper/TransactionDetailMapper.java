@@ -19,4 +19,7 @@ public interface TransactionDetailMapper {
     int updateByPrimaryKey(TransactionDetail record);
 
     List<TransactionDetail> selectByTxId(String txhash);
+
+    List<TransactionDetail> getByAddress(String address);
+
 }

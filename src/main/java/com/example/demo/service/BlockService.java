@@ -13,7 +13,11 @@ public interface BlockService {
 
     Block getBlockByHeight(Integer height);
 
-    BlockDetailDto blockDetail(String blockhash);
+    BlockDetailDto getBlockByHash(String blockhash);
+
+    BlockDetailDto getBlockDetail(Block block);
 
     Txs getTxs(Transaction transaction);
+
+    BlockDetailDto searchBlockByHash(String blockhash, Integer blockchainId);
 }

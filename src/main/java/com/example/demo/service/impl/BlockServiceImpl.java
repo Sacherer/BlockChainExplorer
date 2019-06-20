@@ -49,9 +49,15 @@ public class BlockServiceImpl implements BlockService {
     }
 
     @Override
-    public BlockDetailDto blockDetail(String blockhash) {
+    public BlockDetailDto getBlockByHash(String blockhash) {
         Block block = blockMapper.selectByPrimaryKey(blockhash);
-        List<Transaction> transaction = transactionMapper.selectByBlockHash(blockhash);
+        BlockDetailDto blockDetailDto = getBlockDetail(block);
+        return blockDetailDto;
+    }
+
+    @Override
+    public BlockDetailDto getBlockDetail(Block block) {
+        List<Transaction> transaction = transactionMapper.selectByBlockHash(block.getBlockhash());
         BlockDetailDto blockDetailDto = new BlockDetailDto();
         blockDetailDto.setSize(block.getSize());
         blockDetailDto.setTransactions(block.getTransactions());
@@ -93,5 +99,12 @@ public class BlockServiceImpl implements BlockService {
             txs1.setTxdetails(txDetail);
 
         return txs1;
+    }
+
+    @Override
+    public BlockDetailDto searchBlockByHash(String blockhash, Integer blockchainId) {
+        Block block = blockMapper.searchBlockByHash(blockhash,blockchainId);
+        BlockDetailDto blockDetail = getBlockDetail(block);
+        return blockDetail;
     }
 }

@@ -23,6 +23,9 @@
       from transaction_detail
       where  txid = #{txid,jdbcType=CHAR}
     </select>
+    <select id="getByAddress" resultType="com.example.demo.po.TransactionDetail">
+
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from transaction_detail
     where tx_detail_id = #{txDetailId,jdbcType=BIGINT}

@@ -268,7 +268,7 @@ successResponse:
 
 调用该API，根据区块哈希和币种查询区块详细信息  
 ```json
-url:"/blockChain/blockByHash/{blockChainId}/{blockHash}"
+url:"/blockChain/blockByHash/{blockchainId}/{blockHash}"
 method:GET
 
 successResponse:
@@ -339,7 +339,7 @@ successResponse:
 
 调用该API，根据地址信息和币种查询地址详细信息  
 ```json
-url:"/blockChain/blockByAddress/{blockChainId}/{Address}"  
+url:"/blockChain/blockByAddress/{blockchainId}/{Address}"  
 
 successResponse:
 {
@@ -392,7 +392,7 @@ successResponse:
 调用该API，根据交易哈希信息和币种查询地址详细信息
 
 ```json
-url:"/blockChain/blockByTxhash/{blockChainId}/{Txhash}}"
+url:"/blockChain/blockByTxhash/{blockchainId}/{Txhash}}"
 
 successResponse:
 {
