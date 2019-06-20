@@ -205,4 +205,11 @@
     <include refid="Base_Column_List" />
     from block order by height desc limit 5
   </select>
+<!--  selectByHeight-->
+  <select id="selectByHeight" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where height = #{height,jdbcType=INTEGER}
+  </select>
 </mapper>

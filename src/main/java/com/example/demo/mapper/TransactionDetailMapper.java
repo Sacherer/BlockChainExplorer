@@ -2,6 +2,8 @@ package com.example.demo.mapper;
 
 import com.example.demo.po.TransactionDetail;
 
+import java.util.List;
+
 
 public interface TransactionDetailMapper {
     int deleteByPrimaryKey(Long txDetailId);
@@ -15,4 +17,6 @@ public interface TransactionDetailMapper {
     int updateByPrimaryKeySelective(TransactionDetail record);
 
     int updateByPrimaryKey(TransactionDetail record);
+
+    List<TransactionDetail> selectByTxId(String txhash);
 }

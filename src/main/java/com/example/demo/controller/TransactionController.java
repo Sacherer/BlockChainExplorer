@@ -34,26 +34,7 @@ public class TransactionController {
     @RequestMapping("/txDeatil/{txhash}")
     public TransactionGetDto txDeatil(@PathVariable String txhash){
         TransactionGetDto transactionGetDto = new TransactionGetDto();
-        transactionGetDto.setConfirm(0);
-        transactionGetDto.setFees(0.8);
-        transactionGetDto.setSize((long)192);
-        transactionGetDto.setTime(new Date().getTime());
-        transactionGetDto.setTotalInput(0.31008597);
-        transactionGetDto.setTotalOutput(0.30992593);
-        transactionGetDto.setTxhash("9cd08b5651ac3dd2bdc763f3bf718cd91325265416741dfd2b12b8e41cfdd0b1");
-        transactionGetDto.setWeight(768);
-        ArrayList<TxDetail> txDetails = new ArrayList<>();
-        TxDetail txDetail = new TxDetail();
-        txDetail.setAddress("1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE");
-        txDetail.setType((byte)2);
-        txDetail.setAmount((double)1);
-        txDetails.add(txDetail);
-        TxDetail txDetail2 = new TxDetail();
-        txDetail2.setAddress("1CK6KMY6MHgYvmRQ4PAafKYDrg1ejbH1cE");
-        txDetail2.setType((byte)1);
-        txDetail2.setAmount((double)1);
-        txDetails.add(txDetail2);
-        transactionGetDto.setTxdetails(txDetails);
+
         return transactionGetDto;
     }
 }

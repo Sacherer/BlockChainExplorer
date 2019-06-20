@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.vo.TxDetail;
+import com.example.demo.vo.Txs;
 
 import java.util.Date;
 import java.util.List;
@@ -34,11 +35,7 @@ public class BlockDetailDto {
 
     private Long timestamp;
 
-    private String txhash;
-
-    private Long txtime;
-
-    private List<TxDetail> txdetails;
+    private List<Txs> txs;
 
     public String getBlockhash() {
         return blockhash;
@@ -152,29 +149,11 @@ public class BlockDetailDto {
         this.timestamp = timestamp;
     }
 
-    public List<TxDetail> getTxdetails() {
-        return txdetails;
+    public List<Txs> getTxs() {
+        return txs;
     }
 
-    public void setTxdetails(List<TxDetail> txdetails) {
-        this.txdetails = txdetails;
+    public void setTxs(List<Txs> txs) {
+        this.txs = txs;
     }
-
-    public Long getTxtime() {
-        return txtime;
-    }
-
-    public void setTxtime(Long txtime) {
-        this.txtime = txtime;
-    }
-
-    public String getTxhash() {
-        return txhash;
-    }
-
-    public void setTxhash(String txhash) {
-        this.txhash = txhash;
-    }
-
-
 }

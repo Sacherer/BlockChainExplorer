@@ -23,4 +23,5 @@ public interface BlockMapper {
 
     List<Block> getBlockIndex();
 
+    Block selectByHeight(Integer height);
 }

@@ -21,7 +21,13 @@
     from transaction
     where txhash = #{txhash,jdbcType=CHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <select id="selectByBlockHash" resultType="com.example.demo.po.Transaction">
+      select
+      <include refid="Base_Column_List" />
+      from transaction
+      where blockhash = #{blockhash,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from transaction
     where txhash = #{txhash,jdbcType=CHAR}
   </delete>

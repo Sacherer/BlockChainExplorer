@@ -17,7 +17,13 @@
     from transaction_detail
     where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="selectByTxId" resultType="com.example.demo.po.TransactionDetail">
+      select
+      <include refid="Base_Column_List" />
+      from transaction_detail
+      where  txid = #{txid,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from transaction_detail
     where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
   </delete>

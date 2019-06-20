@@ -37,9 +37,9 @@ successResponse:
 
 ## 2 块详细信息
 
-调用该API，根据区块高度查询区块详细信息  
+调用该API，根据区块哈希查询区块详细信息  
 ```json
-url:"/block/blockDetail/{height}"
+url:"/block/blockDetail/{blockhash}"
 
 successResponse:
 {
@@ -95,7 +95,50 @@ successResponse:
 |    type|   Byte |   1收入 0支出
 |    amount|   Double | 
 
-## 3、块查看更多页面
+## 3 块信息
+
+调用该API，根据区块高度查询区块基本信息  
+```json
+url:"/block/blockDetail/{blockhash}"
+
+successResponse:
+{
+    "blockhash": "00000000000000000018a65ff0bbbc2a93493c693d05dd65c6a8dcbb881f55fb",
+    "blockchainId": 1,
+    "height": 580770,
+    "time": 1560567903453,
+    "transactions": 2867,
+    "size": 1225464,
+    "difficulty": 1,
+    "prevBlockhash": "00000000000000000006a0673f90d900aefe5f7bef705f7dbdabe9b7077e06dd",
+    "nextBlockhash": "00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951",
+    "outputTotal": 1647.45939539,
+    "fees": 0.8,
+    "merkleRoot": "5207117cb3ef0635be556974a3c781e17905c0e2d4390aec212b5f6a1110e32b",
+    "miner": "SlushPool",
+    "timestamp": 1560567903453,
+    "txhash": "c2b30b0516135b0d0b9b646c3b3b9c66425e86bb1cee773e019eed56030967a6",
+    "txtime": 1560567903453
+}
+```
+| ResponseField     |     Type |   Description   | 
+| :--------------: | :--------:| :------: |
+|    blockhash|   String |  区块哈希值 |
+|    height|   Integer |  区块高度 |
+|    time|   Long |   |
+|    transactions|   Integer |  
+|    miner|   String |  
+|    size|   Long |  
+|    blockchainId|   Integer |  货币种类
+|    prevBlockhash|   String |  
+|    nextBlockhash|   String |  
+|    outputTotal|   Double |  
+|    difficulty|   Double |  难度系数
+|    fees|   Double |  
+|    merkleRoot|   String |  
+|    timestamp|   Long |  
+
+## 4、块查看更多页面
 
 调用该API，可以根据日期段获取所有块信息
 
@@ -131,7 +174,7 @@ successResponse:
 |    miner|   String |  
 |    size|   Long |  
 
-## 4、交易信息首页
+## 5、交易信息首页
 
 调用该API，可以获取最新交易信息
 
@@ -158,7 +201,7 @@ successResponse:
 |    time|   Long |  交易时间 |
 |    totalOutput|   Double | 钱  |
 
-## 5、交易信息详情
+## 6、交易信息详情
 
 调用该API，可以根据交易哈希获取交易信息
 
@@ -203,7 +246,7 @@ successResponse:
 |    type|   Byte |  1收入 0支出
 |    amount|   Double | 
 
-## 6 搜索区块信息
+## 7 搜索区块信息
 
 调用该API，根据区块哈希和币种查询区块详细信息  
 ```json
@@ -264,7 +307,7 @@ successResponse:
 |    type|   Byte |  1收入 0支出
 |    amount|   Double | 
 
-## 7 搜索地址信息
+## 8 搜索地址信息
 
 调用该API，根据地址信息和币种查询地址详细信息  
 ```json
@@ -306,7 +349,7 @@ successResponse:
 |    time|   Long | 时间戳  |
 |    confirm|   Integer |   次数|
 
-## 8、搜索交易信息
+## 9、搜索交易信息
 
 调用该API，根据交易哈希信息和币种查询地址详细信息
 
