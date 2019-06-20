@@ -18,7 +18,7 @@ public class BitcoinScheduled {
     @Scheduled(fixedRate = 60*1000)
     public void setScheduled(){
         logger.info("the scheduled is start");
-        bitconinSyncService.syncBlockChain("0000000000006a5381c351bce21af5a8889641869e07fdce754b850f5919765e");
+//        bitconinSyncService.syncBlockChain("0000000000006a5381c351bce21af5a8889641869e07fdce754b850f5919765e");
 
     }
 }

@@ -43,35 +43,43 @@ url:"/block/blockDetail/{blockhash}"
 
 successResponse:
 {
-    "blockhash": "00000000000000000018a65ff0bbbc2a93493c693d05dd65c6a8dcbb881f55fb",
+    "blockhash": "0000000000000176101217de400e874a4ce483aeb5b76845c2bf50ccdda35c6a",
     "blockchainId": 1,
-    "height": 580770,
-    "time": 1560567903453,
-    "transactions": 2867,
-    "size": 1225464,
-    "difficulty": 1,
-    "prevBlockhash": "00000000000000000006a0673f90d900aefe5f7bef705f7dbdabe9b7077e06dd",
-    "nextBlockhash": "00000000000000000025c889729b9f97cb3fc683742608fd61c7e481a7e2c951",
-    "outputTotal": 1647.45939539,
-    "fees": 0.8,
-    "merkleRoot": "5207117cb3ef0635be556974a3c781e17905c0e2d4390aec212b5f6a1110e32b",
-    "miner": "SlushPool",
-    "timestamp": 1560567903453,
-    "txhash": "c2b30b0516135b0d0b9b646c3b3b9c66425e86bb1cee773e019eed56030967a6",
-    "txtime": 1560567903453,
-    "txdetails": [
+    "height": 1562435,
+    "time": 1560948964000,
+    "transactions": 20,
+    "size": 39601,
+    "difficulty": 498711.3051555969,
+    "prevBlockhash": "00000000000001b248d5c6878e5771f459229721ba9d14587e8501a0c16ad01b",
+    "nextBlockhash": null,
+    "outputTotal": null,
+    "fees": null,
+    "merkleRoot": "cea2c97df6ad66caba09be23af6e7b7a797083924f7247669b90fb5ebbe12f7a",
+    "miner": null,
+    "timestamp": 1560948964000,
+    "txs": [
         {
-            "address": "1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE ",
-            "type": 1,
-            "amount": 1
-        },
-        {
-            "address": "1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE ",
-            "type": 2,
-            "amount": 1
-        }
-    ]
-}
+            "txhash": "04ecf2cd116193fca696467a8125858ea757a8210bc958261d63e1c6222df3b4",
+            "txtime": 1560948964000,
+            "txdetails": [
+                {
+                    "address": "2NCRq946ygY75NLH1K5LZRiBY8dmuQ9SPxA",
+                    "type": 0,
+                    "amount": -0.021
+                },
+                {
+                    "address": "tb1qell034gq7me8uv3hltk5ee367tgnv6e9ze8hnp",
+                    "type": 1,
+                    "amount": 0.01099591
+                },
+                {
+                    "address": "tb1qja280rl5qpsc22xh7uxcy07fc0nq2qvveknjdv",
+                    "type": 1,
+                    "amount": 0.01
+                }
+            ]
+        }]
+}       
 ```
 | ResponseField     |     Type |   Description   | 
 | :--------------: | :--------:| :------: |
@@ -218,18 +226,28 @@ successResponse:
     "totalOutput": 0.30992593,
     "fees": 0.8,
     "confirm": 0,
-    "txdetails": [
-        {
-            "address": "1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE",
-            "type": 2,
-            "amount": 1
-        },
-        {
-            "address": "1CK6KMY6MHgYvmRQ4PAafKYDrg1ejbH1cE",
-            "type": 1,
-            "amount": 1
-        }
-    ]
+    "txs": [
+            {
+                "txhash": "04ecf2cd116193fca696467a8125858ea757a8210bc958261d63e1c6222df3b4",
+                "txtime": 1560948964000,
+                "txdetails": [
+                    {
+                        "address": "2NCRq946ygY75NLH1K5LZRiBY8dmuQ9SPxA",
+                        "type": 0,
+                        "amount": -0.021
+                    },
+                    {
+                        "address": "tb1qell034gq7me8uv3hltk5ee367tgnv6e9ze8hnp",
+                        "type": 1,
+                        "amount": 0.01099591
+                    },
+                    {
+                        "address": "tb1qja280rl5qpsc22xh7uxcy07fc0nq2qvveknjdv",
+                        "type": 1,
+                        "amount": 0.01
+                    }
+                ]
+            }]
 }
 ```
 | ResponseField     |     Type |   Description   | 
@@ -271,18 +289,28 @@ successResponse:
     "timestamp": 1560568140102,
     "txhash": "c2b30b0516135b0d0b9b646c3b3b9c66425e86bb1cee773e119eed56030967a6",
     "txtime": 1560568140102,
-    "txdetails": [
-        {
-            "address": "1CK6KHY6MAg1vmRQ4PAafKYDrg1ejbH1cE ",
-            "type": 2,
-            "amount": 2
-        },
-        {
-            "address": "1CK6KHY6MHgYvmRQ4PAafKYDrg1ejbH1cE ",
-            "type": 1,
-            "amount": 1
-        }
-    ]
+    "txs": [
+            {
+                "txhash": "04ecf2cd116193fca696467a8125858ea757a8210bc958261d63e1c6222df3b4",
+                "txtime": 1560948964000,
+                "txdetails": [
+                    {
+                        "address": "2NCRq946ygY75NLH1K5LZRiBY8dmuQ9SPxA",
+                        "type": 0,
+                        "amount": -0.021
+                    },
+                    {
+                        "address": "tb1qell034gq7me8uv3hltk5ee367tgnv6e9ze8hnp",
+                        "type": 1,
+                        "amount": 0.01099591
+                    },
+                    {
+                        "address": "tb1qja280rl5qpsc22xh7uxcy07fc0nq2qvveknjdv",
+                        "type": 1,
+                        "amount": 0.01
+                    }
+                ]
+            }]
 }
 ```
 | ResponseField     |     Type |   Description   | 
@@ -322,18 +350,28 @@ successResponse:
     "noTxSize": 107,
     "time": 1560568160523,
     "confirm": 11,
-    "txdetails": [
-        {
-            "address": "1CK6KHY6MAg1vmRQ4P1afKYDrg1ejbH1cE ",
-            "type": 1,
-            "amount": 3
-        },
-        {
-            "address": "1CK6KHY6MHgY1mRQ4PAafKYDrg1ejbH1cE ",
-            "type": 2,
-            "amount": 1
-        }
-    ]
+    "txs": [
+            {
+                "txhash": "04ecf2cd116193fca696467a8125858ea757a8210bc958261d63e1c6222df3b4",
+                "txtime": 1560948964000,
+                "txdetails": [
+                    {
+                        "address": "2NCRq946ygY75NLH1K5LZRiBY8dmuQ9SPxA",
+                        "type": 0,
+                        "amount": -0.021
+                    },
+                    {
+                        "address": "tb1qell034gq7me8uv3hltk5ee367tgnv6e9ze8hnp",
+                        "type": 1,
+                        "amount": 0.01099591
+                    },
+                    {
+                        "address": "tb1qja280rl5qpsc22xh7uxcy07fc0nq2qvveknjdv",
+                        "type": 1,
+                        "amount": 0.01
+                    }
+                ]
+            }]
 }
 ```
 | ResponseField     |     Type |   Description   | 

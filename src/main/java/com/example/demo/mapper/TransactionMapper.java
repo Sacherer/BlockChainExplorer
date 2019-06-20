@@ -19,4 +19,6 @@ public interface TransactionMapper {
     int updateByPrimaryKey(Transaction record);
 
     List<Transaction> selectByBlockHash(String blockhash);
+
+    List<Transaction> getTxIndex();
 }

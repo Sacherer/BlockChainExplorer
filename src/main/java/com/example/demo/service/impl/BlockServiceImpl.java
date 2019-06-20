@@ -68,25 +68,30 @@ public class BlockServiceImpl implements BlockService {
         blockDetailDto.setTime(block.getTime().getTime());
         blockDetailDto.setTimestamp(block.getTimestamp().getTime());
         ArrayList<Txs> txs = new ArrayList<>();
-
         for (Transaction transaction1 : transaction) {
+            Txs txs1 = getTxs(transaction1);
+            txs.add(txs1);
+        }
+        blockDetailDto.setTxs(txs);
+        return blockDetailDto;
+    }
+
+    @Override
+    public Txs getTxs(Transaction transaction) {
             Txs txs1 = new Txs();
-            txs1.setTxhash(transaction1.getTxhash());
-            txs1.setTxtime(transaction1.getTime().getTime());
-            List<TransactionDetail> transactionDetails =  transactionDetailMapper.selectByTxId(transaction1.getTxhash());
+            txs1.setTxhash(transaction.getTxhash());
+            txs1.setTxtime(transaction.getTime().getTime());
+            List<TransactionDetail> transactionDetails =  transactionDetailMapper.selectByTxId(transaction.getTxhash());
             ArrayList<TxDetail> txDetail = new ArrayList<>();
             for (TransactionDetail transactionDetail : transactionDetails) {
-            TxDetail txDetail1 = new TxDetail();
+                TxDetail txDetail1 = new TxDetail();
                 txDetail1.setAddress(transactionDetail.getAddress());
                 txDetail1.setType(transactionDetail.getType());
                 txDetail1.setAmount(transactionDetail.getAmount());
                 txDetail.add(txDetail1);
             }
             txs1.setTxdetails(txDetail);
-            txs.add(txs1);
-        }
-        blockDetailDto.setTxs(txs);
 
-        return blockDetailDto;
+        return txs1;
     }
 }
