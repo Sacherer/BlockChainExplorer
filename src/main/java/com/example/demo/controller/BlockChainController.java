@@ -23,14 +23,6 @@ public class BlockChainController {
     @Autowired
     private TransationService transationService;
 
-
-    @RequestMapping("/blockByAddress/{blockchainId}/{Address}")
-    public AddressDto getAddress(@PathVariable String Address,@PathVariable Integer blockchainId){
-        AddressDto addressDto =transationService.getAddress(Address);
-
-        return addressDto;
-    }
-
     @RequestMapping("/search/{blockchainId}/{param}")
     public Object getSearch(@PathVariable String param, @PathVariable Integer blockchainId){
         AddressDto addressDto =transationService.getAddress(param);

@@ -17,4 +17,8 @@ public interface TransationService {
     AddressDto getAddress(String address);
 
     double getTotalReceived(String address);
+
+    Integer getTxSize(String address);
+
+    double getfinalBalance(String address);
 }

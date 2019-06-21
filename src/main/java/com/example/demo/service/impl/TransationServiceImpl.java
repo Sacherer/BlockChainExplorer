@@ -99,7 +99,18 @@ public class TransationServiceImpl implements TransationService {
             addressDto.setAddress(address);
             double totalRecevied = getTotalReceived(address);
             addressDto.setTotalReceived(totalRecevied);
-
+            Integer txSize = getTxSize(address);
+            addressDto.setTxSize(txSize);
+            double finalBalance = getfinalBalance(address);
+            addressDto.setFinalBalance(finalBalance);
+            ArrayList<Txs> txs = new ArrayList<>();
+            for (TransactionDetail tx : transactionDetails) {
+                Transaction transaction = transactionMapper.selectByPrimaryKey(tx.getTxid());
+                Txs txs1 = blockService.getTxs(transaction);
+                txs.add(txs1);
+            }
+            addressDto.setTxs(txs);
+            return addressDto;
         }
         return null;
     }
@@ -107,5 +118,15 @@ public class TransationServiceImpl implements TransationService {
     @Override
     public double getTotalReceived(String address) {
         return transactionDetailMapper.getTotalReceived(address);
+    }
+
+    @Override
+    public Integer getTxSize(String address) {
+        return transactionDetailMapper.getTxSize(address);
+    }
+
+    @Override
+    public double getfinalBalance(String address) {
+        return transactionDetailMapper.getfinalBalance(address);
     }
 }

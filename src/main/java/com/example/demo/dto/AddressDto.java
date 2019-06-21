@@ -8,8 +8,7 @@ public class AddressDto {
     private String address;
     private Double totalReceived;
     private Double finalBalance;
-    private Integer noTxSize;
-    private Integer confirm;
+    private Integer txSize;
 
     private List<Txs> txs;
 
@@ -21,15 +20,6 @@ public class AddressDto {
         this.txs = txs;
     }
 
-
-
-    public Integer getConfirm() {
-        return confirm;
-    }
-
-    public void setConfirm(Integer confirm) {
-        this.confirm = confirm;
-    }
 
     public String getAddress() {
         return address;
@@ -56,12 +46,12 @@ public class AddressDto {
     }
 
 
-    public Integer getNoTxSize() {
-        return noTxSize;
+    public Integer getTxSize() {
+        return txSize;
     }
 
-    public void setNoTxSize(Integer noTxSize) {
-        this.noTxSize = noTxSize;
+    public void setTxSize(Integer txSize) {
+        this.txSize = txSize;
     }
 
 
