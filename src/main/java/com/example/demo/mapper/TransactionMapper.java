@@ -21,4 +21,5 @@ public interface TransactionMapper {
     List<Transaction> selectByBlockHash(String blockhash);
 
     List<Transaction> getTxIndex();
+
 }

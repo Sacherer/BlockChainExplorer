@@ -218,4 +218,10 @@
       from block
       where blockhash = #{blockhash,jdbcType=CHAR} and blockchain_id = #{blockchainId,jdbcType=INTEGER}
     </select>
+  <select id="searchBlockByHeight" resultType="com.example.demo.po.Block">
+    select
+    <include refid="Base_Column_List" />
+    from block
+    where height = #{height,jdbcType=INTEGER} and blockchain_id = #{blockchainId,jdbcType=INTEGER}
+  </select>
 </mapper>

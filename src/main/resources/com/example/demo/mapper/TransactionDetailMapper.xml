@@ -24,9 +24,15 @@
       where  txid = #{txid,jdbcType=CHAR}
     </select>
     <select id="getByAddress" resultType="com.example.demo.po.TransactionDetail">
-
+      select
+      <include refid="Base_Column_List" />
+      from transaction_detail
+      where address = #{address,jdbcType=VARCHAR}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <select id="getTotalReceived" resultType="java.lang.Double">
+    select sum(amount) from transaction_detail where type=1 and  address = #{address,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from transaction_detail
     where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
   </delete>

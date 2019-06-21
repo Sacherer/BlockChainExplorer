@@ -26,4 +26,6 @@ public interface BlockMapper {
     Block selectByHeight(Integer height);
 
     Block searchBlockByHash(String blockhash, Integer blockchainId);
+
+    Block searchBlockByHeight(int height, Integer blockchainId);
 }

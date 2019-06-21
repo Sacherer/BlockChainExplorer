@@ -20,4 +20,6 @@ public interface BlockService {
     Txs getTxs(Transaction transaction);
 
     BlockDetailDto searchBlockByHash(String blockhash, Integer blockchainId);
+
+    Block searchBlockByHeight(int height, Integer blockchainId);
 }

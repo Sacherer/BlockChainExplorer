@@ -14,5 +14,7 @@ public interface TransationService {
 
     TransactionSearchDto seaerchTransactionByTxhash(String txhash, Integer blockchainId);
 
-    AddressDto getAddress(String address, Integer blockchainId);
+    AddressDto getAddress(String address);
+
+    double getTotalReceived(String address);
 }

@@ -104,7 +104,16 @@ public class BlockServiceImpl implements BlockService {
     @Override
     public BlockDetailDto searchBlockByHash(String blockhash, Integer blockchainId) {
         Block block = blockMapper.searchBlockByHash(blockhash,blockchainId);
-        BlockDetailDto blockDetail = getBlockDetail(block);
-        return blockDetail;
+        if(block!=null){
+
+            BlockDetailDto blockDetail = getBlockDetail(block);
+            return blockDetail;
+        }
+        return null;
+    }
+
+    @Override
+    public Block searchBlockByHeight(int height, Integer blockchainId) {
+        return blockMapper.searchBlockByHeight(height,blockchainId);
     }
 }

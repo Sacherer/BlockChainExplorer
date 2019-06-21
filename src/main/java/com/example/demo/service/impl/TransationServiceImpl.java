@@ -71,26 +71,41 @@ public class TransationServiceImpl implements TransationService {
     public TransactionSearchDto seaerchTransactionByTxhash(String txhash, Integer blockchainId) {
         TransactionSearchDto transactionSearchDto = new TransactionSearchDto();
         Transaction transaction = transactionMapper.selectByPrimaryKey(txhash);
-        transactionSearchDto.setConfirm(transaction.getConfirm());
-        transactionSearchDto.setFees(transaction.getFees());
-        transactionSearchDto.setSize(transaction.getSize());
-        transactionSearchDto.setTime(transaction.getTime().getTime());
-        transactionSearchDto.setTotalInput(transaction.getTotalInput());
-        transactionSearchDto.setTotalOutput(transaction.getTotalOutput());
-        transactionSearchDto.setTxhash(transaction.getTxhash());
-        transactionSearchDto.setWeight(transaction.getWeight());
-        ArrayList<Txs> txs1 = new ArrayList<>();
-        Txs txs = blockService.getTxs(transaction);
-        txs1.add(txs);
-        transactionSearchDto.setTxs(txs1);
-        Block block = blockMapper.searchBlockByHash(transaction.getBlockhash(),blockchainId);
-        transactionSearchDto.setHeight(block.getHeight());
-        return transactionSearchDto;
+        if(transaction!=null){
+            transactionSearchDto.setConfirm(transaction.getConfirm());
+            transactionSearchDto.setFees(transaction.getFees());
+            transactionSearchDto.setSize(transaction.getSize());
+            transactionSearchDto.setTime(transaction.getTime().getTime());
+            transactionSearchDto.setTotalInput(transaction.getTotalInput());
+            transactionSearchDto.setTotalOutput(transaction.getTotalOutput());
+            transactionSearchDto.setTxhash(transaction.getTxhash());
+            transactionSearchDto.setWeight(transaction.getWeight());
+            ArrayList<Txs> txs1 = new ArrayList<>();
+            Txs txs = blockService.getTxs(transaction);
+            txs1.add(txs);
+            transactionSearchDto.setTxs(txs1);
+            Block block = blockMapper.searchBlockByHash(transaction.getBlockhash(),blockchainId);
+            transactionSearchDto.setHeight(block.getHeight());
+            return transactionSearchDto;
+        }
+        return null;
     }
 
     @Override
-    public AddressDto getAddress(String address, Integer blockchainId) {
+    public AddressDto getAddress(String address) {
         List<TransactionDetail> transactionDetails = transactionDetailMapper.getByAddress(address);
+        if(transactionDetails!=null){
+            AddressDto addressDto = new AddressDto();
+            addressDto.setAddress(address);
+            double totalRecevied = getTotalReceived(address);
+            addressDto.setTotalReceived(totalRecevied);
+
+        }
         return null;
+    }
+
+    @Override
+    public double getTotalReceived(String address) {
+        return transactionDetailMapper.getTotalReceived(address);
     }
 }
