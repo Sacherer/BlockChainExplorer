@@ -87,13 +87,14 @@ public class BitconinSyncServiceImpl implements BitconinSyncService {
         block1.setTimestamp(new Date(time * 1000));
         block1.setTransactions(blocks.getInteger("nTx"));
         //todo
-        block1.setOutputTotal(null);
-        blockMapper.insert(block1);
+
         JSONArray tx = blocks.getJSONArray("tx");
         for (Object o : tx) {
             JSONObject txObject = new JSONObject((LinkedHashMap) o);
             syncTx(blocks, txObject);
         }
+        block1.setOutputTotal(getBlockOutputTotal(blocks.getString("hash")));
+        blockMapper.insert(block1);
         return  block1.getNextBlockhash();
     }
 
@@ -111,12 +112,11 @@ public class BitconinSyncServiceImpl implements BitconinSyncService {
         String txid = txObject.getString("txid");
         transaction.setTxhash(txid);
         transaction.setWeight(txObject.getInteger("weight"));
-        //todo set totalinput
-        transaction.setTotalInput(null);
-        //todo set totaloutput
-        transaction.setTotalOutput(null);
-        transactionMapper.insert(transaction);
+
         syncTxDetail(txid,txObject);
+        transaction.setTotalInput(getTxTotalInput(txid));
+        transaction.setTotalOutput(getTxTotalOutput(txid));
+        transactionMapper.insert(transaction);
     }
 
     @Override
@@ -131,6 +131,24 @@ public class BitconinSyncServiceImpl implements BitconinSyncService {
             JSONObject voutObject = new JSONObject(((LinkedHashMap) ovout));
             vout(txid, voutObject);
         }
+    }
+
+    @Override
+    public Double getTxTotalInput(String txid) {
+        Double totalInput=transactionDetailMapper.getTxTotalInput(txid);
+        return totalInput;
+    }
+
+    @Override
+    public Double getTxTotalOutput(String txid) {
+        Double totalOutput=transactionDetailMapper.getTxTotalOutput(txid);
+        return totalOutput;
+    }
+
+    @Override
+    public Double getBlockOutputTotal(String blockhash) {
+        Double blockOutputTotal=transactionMapper.getBlockOutputTotal(blockhash);
+        return blockOutputTotal;
     }
 
     @Override

@@ -22,4 +22,5 @@ public interface TransactionMapper {
 
     List<Transaction> getTxIndex();
 
+    Double getBlockOutputTotal(String blockhash);
 }

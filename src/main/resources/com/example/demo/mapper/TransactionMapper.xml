@@ -32,6 +32,9 @@
       <include refid="Base_Column_List" />
       from transaction order by rand() limit 5
     </select>
+    <select id="getBlockOutputTotal" resultType="java.lang.Double">
+      select sum(total_output) from transaction where blockhash = #{blockhash,jdbcType=CHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from transaction
     where txhash = #{txhash,jdbcType=CHAR}

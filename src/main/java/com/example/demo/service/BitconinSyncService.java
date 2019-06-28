@@ -9,4 +9,7 @@ public interface BitconinSyncService {
     void vout(String txid,JSONObject voutObject);
     void vint(String txid,JSONObject vinObject);
     void syncTxDetail(String txid,JSONObject txObject);
+    Double getTxTotalInput(String txid);
+    Double getTxTotalOutput(String txid);
+    Double getBlockOutputTotal(String blockhash);
 }

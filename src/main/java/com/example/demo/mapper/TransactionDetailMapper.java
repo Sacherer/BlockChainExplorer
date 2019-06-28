@@ -27,4 +27,8 @@ public interface TransactionDetailMapper {
     Integer getTxSize(String address);
 
     double getfinalBalance(String address);
+
+    Double getTxTotalInput(String txid);
+
+    Double getTxTotalOutput(String txid);
 }

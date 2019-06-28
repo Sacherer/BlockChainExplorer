@@ -94,7 +94,7 @@ public class TransationServiceImpl implements TransationService {
     @Override
     public AddressDto getAddress(String address) {
         List<TransactionDetail> transactionDetails = transactionDetailMapper.getByAddress(address);
-        if(transactionDetails!=null){
+        if(transactionDetails.size()!=0){
             AddressDto addressDto = new AddressDto();
             addressDto.setAddress(address);
             double totalRecevied = getTotalReceived(address);

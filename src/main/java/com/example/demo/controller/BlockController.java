@@ -31,7 +31,6 @@ public class BlockController {
     @RequestMapping("/blockDetail/{blockhash}")
     public BlockDetailDto blockDetail(@PathVariable String blockhash){
         BlockDetailDto blockDetailDto = blockService.getBlockByHash(blockhash);
-
         return blockDetailDto;
     }
 

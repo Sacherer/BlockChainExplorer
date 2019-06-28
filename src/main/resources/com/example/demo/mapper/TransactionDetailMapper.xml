@@ -38,6 +38,12 @@
   <select id="getfinalBalance" resultType="java.lang.Double">
     select sum(amount) from transaction_detail where address = #{address,jdbcType=VARCHAR}
   </select>
+  <select id="getTxTotalInput" resultType="java.lang.Double">
+    select sum(amount) from transaction_detail where type= 0 and txid = #{txid,jdbcType=CHAR}
+  </select>
+  <select id="getTxTotalOutput" resultType="java.lang.Double">
+        select sum(amount) from transaction_detail where type= 1 and txid = #{txid,jdbcType=CHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from transaction_detail
     where tx_detail_id = #{txDetailId,jdbcType=BIGINT}
