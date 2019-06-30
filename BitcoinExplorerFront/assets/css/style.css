@@ -1,0 +1,16 @@
+.search{
+    color: white;
+    text-decoration:underline;
+}
+.tr1{
+    background-color: #f9f9f9f9;height: 40px; border: 1px solid #dddddd;
+}
+.tr2{
+    background-color: #ffffff;height: 40px; border: 1px solid #dddddd;
+}
+.hashtr1{
+    background-color: #f9f9f9f9;height: 40px
+}
+.hashtr2{
+    background-color: #ffffff;height: 40px
+}

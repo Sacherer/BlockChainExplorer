@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/elementui.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>BlockChainIndex</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-container>
+            <el-header style="background-color:midnightblue;text-align: center;" height="250px">
+                <br>
+                <font style="color: white;font-size: 40px;">Block Explorer</font>
+                <br>
+                <br>
+                <el-input v-model="search" placeholder="input height address txid or blockhash" style="width: 45%"
+                    prefix-icon="el-icon-search" v-on:keyup.enter.native="submit">
+                </el-input>
+                <el-select v-model="blockchainId" style="width: 150px">
+                    <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                    </el-option>
+                </el-select>
+                <el-button type="primary" @click="submit()">Search</el-button>
+                <br>
+                <br>
+                <font style="color: white;">You can search for things like
+                    <el-button type="text" class="search" @click="autoAddress">Address
+                    </el-button>
+                    <el-button type="text" class="search" @click="autoTransaction">
+                        Transaction</el-button>
+                    <el-button type="text" class="search" @click="autoBlock">Block
+                    </el-button>
+                    <el-button type="text" class="search" @click="autoHeight">Height
+                    </el-button>
+                </font>
+            </el-header>
+            <el-main style="background-color:#ccc;text-align: center">
+                <el-tabs type="border-card" @tab-click="currentGetBlock">
+                    <el-tab-pane label="BLOCKS">
+                        <el-table :data="blocks" stripe style="width: 100%" v-loading="loading">
+                            <el-table-column label="Height">
+                                <template slot-scope="scope">
+                                    <el-link type="primary" @click="currentHeight(scope.$index, scope.row)">
+                                        {{scope.row.height}}</el-link>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="Time">
+                                <template slot-scope="scope">
+                                    {{parseInt((Date.now()-(scope.row.time))/1000/60)}} minutes
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="transactions" label="Transactions">
+                            </el-table-column>
+                            <el-table-column prop="size" label="Size">
+                            </el-table-column>
+                        </el-table>
+                        <br>
+                        <el-button plain style="font-weight: bolder ;color: lightskyblue" @click="moreBlock">View More
+                        </el-button>
+                    </el-tab-pane>
+                    <el-tab-pane label="TRANSACTIONS">
+                        <el-table :data="txs" stripe style="width: 100%;" v-loading="loading">
+                            <el-table-column label="Transaction Hash" width="600px">
+                                <template slot-scope="scope">
+                                    <el-link type="primary" @click="currentTxHash(scope.$index, scope.row)">
+                                        {{scope.row.txhash}}</el-link>
+                                </template>
+                            </el-table-column>
+                            <el-table-column label="Time">
+                                <template slot-scope="scope">
+                                    {{parseInt((Date.now()-(scope.row.time))/1000/60)}} minutes
+                                </template>
+                            </el-table-column>
+                            <el-table-column prop="totalOutput" label="Amount (BTC)">
+                            </el-table-column>
+                            <el-table-column label="Amount (USD)">
+                                <template slot-scope="scope">
+                                        <el-tooltip effect="dark" :content="rate.toString()" placement="top">
+                                            <el-button>{{Number((scope.row.totalOutput)*rate).toFixed(2)}}$</el-button>
+                                        </el-tooltip>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <br>
+                        <el-button plain style="font-weight: bolder ;color: lightskyblue" @click="moreTx">View More
+                        </el-button>
+                    </el-tab-pane>
+                </el-tabs>
+            </el-main>
+
+            </el-main>
+        </el-container>
+
+
+    </div>
+
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/elementui.js"></script>
+    <script src="assets/js/sockjs.js"></script>
+    <script src="assets/js/stomp.min.js"></script>
+    <script src="viewmodels/BlockChainIndex.js"></script>
+
+</body>
+
+</html>

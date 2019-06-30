@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/elementui.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>BlockViewMore</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-container>
+            <el-header style="background-color:midnightblue;" height="80px">
+                <br>
+                <a href="BlockChainIndex.html" style="text-decoration:none">
+                    <font style="color: white;font-size: 30px;">BlockChain</font>
+                </a>
+            </el-header>
+            <br>
+            <div style="text-align: center">
+                <el-link type="primary" @click="currentPrev()" style="font-size:40px "><< Previous</el-link>
+                <el-link  style="color: black;font-size:40px ">Blocks mined on:{{new Date(time).toLocaleDateString()}}</el-link>
+                <el-link type="primary" @click="currentNext()" style="font-size:40px ">Next >></el-link>
+            </div>
+            <br>
+            <el-main v-loading="loading" style="padding-left:40px;padding-right:40px">
+                <el-table :data="blocks" stripe style="width: 100%;font-size: 12px;text-align: left">
+                    <el-table-column label="Height">
+                        <template slot-scope="scope">
+                            <el-link type="primary" @click="currentHeight(scope.$index, scope.row)"
+                                style="font-size:12px ">
+                                {{scope.row.height}}</el-link>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="Time">
+                        <template slot-scope="scope">
+                            {{new Date(scope.row.time).toISOString().replace('T', ' ').substring(0,(new Date(scope.row.time).toISOString().replace('T', ' ')).indexOf('.'))}}
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="Blockhash" width="500px">
+                        <template slot-scope="scope">
+                            <el-link type="primary" @click="currentHash(scope.$index, scope.row)"
+                                style="font-size:12px ">
+                                {{scope.row.blockhash}}</el-link>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="transactions" label="Transactions">
+                    </el-table-column>
+                    <el-table-column prop="size" label="Size">
+                    </el-table-column>
+                </el-table>
+            </el-main>
+        </el-container>
+    </div>
+
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/elementui.js"></script>
+    <script src="viewmodels/BlockViewMore.js"></script>
+
+</body>
+
+</html>

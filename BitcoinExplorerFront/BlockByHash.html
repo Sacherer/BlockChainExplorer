@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/elementui.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Demo</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-container>
+            <el-header style="background-color:midnightblue;" height="80px">
+                <br>
+                <a href="BlockChainIndex.html" style="text-decoration:none">
+                    <font style="color: white;font-size: 30px;">BlockChain</font>
+                </a>
+            </el-header>
+            <el-container v-loading="loading">
+                <el-aside style="width: 50%;margin-left: 60px;">
+                    <h3>Block #{{blocks.height}}</h3>
+                    <table style="font-size: 14px" width="100%">
+                        <tr class="tr1">
+                            <td colspan="2">Summary</td>
+                        </tr>
+                        <tr class="tr2">
+                            <td>Number Of Transactions</td>
+                            <td>{{blocks.transactions}}</td>
+                        </tr>
+                        <tr class="tr1">
+                            <td>Output Total</td>
+                            <td>{{blocks.outputTotal}}</td>
+                        </tr>
+                        <tr class="tr2">
+                            <td>Transaction Fees</td>
+                            <td>{{blocks.fees}}</td>
+                        </tr>
+                        <tr class="tr1">
+                            <td>Height</td>
+                            <td>
+                                <el-link type="primary" @click="currentHeight(blocks.height)">
+                                    {{blocks.height}}</el-link>
+                            </td>
+                        </tr>
+                        <tr class="tr2">
+                            <td>Timestamp</td>
+                            <td>{{JSON.stringify(new Date(blocks.timestamp).toJSON()).replace(/\"/g,"").replace('T', ' ').substring(0,(JSON.stringify(new Date(blocks.timestamp).toJSON()).replace(/\"/g,"").replace('T', ' ')).indexOf('.'))}}</td>
+                        </tr>
+                        <tr class="tr1">
+                            <td>Time</td>
+                            <td>{{JSON.stringify(new Date(blocks.time).toJSON()).replace(/\"/g,"").replace('T', ' ').substring(0,(JSON.stringify(new Date(blocks.time).toJSON()).replace(/\"/g,"").replace('T', ' ')).indexOf('.'))}}</td>
+                        </tr>
+                        <tr class="tr2">
+                            <td>Difficulty</td>
+                            <td>{{blocks.difficulty}}</td>
+                        </tr>
+                        <tr class="tr1">
+                            <td>Size</td>
+                            <td>{{blocks.size}}</td>
+                        </tr>
+                    </table>
+                </el-aside>
+                <el-main style="margin-right: 80px">
+                    <br>
+                    <br>
+                    <table style="font-size: 14px" width="100%">
+                        <tr class="hashtr1">
+                            <td colspan="2">Hashes</td>
+                        </tr>
+                        <tr class="hashtr2">
+                            <td width="30px">Blockhash</td>
+                        </tr>
+                        <tr class="hashtr1">
+                            <td>
+                                <el-link type="primary" @click="currentHash(blocks.blockhash)">
+                                    {{blocks.blockhash}}</el-link>
+                            </td>
+                        </tr>
+                        <tr class="hashtr2">
+                            <td>PrevBlockhash</td>
+                        </tr>
+                        <tr class="hashtr1">
+                            <td>
+                                <el-link type="primary" @click="currentHash(blocks.prevBlockhash)">
+                                    {{blocks.prevBlockhash}}</el-link>
+                            </td>
+                        </tr>
+                        <tr class="hashtr2">
+                            <td>NextBlockhash</td>
+                        </tr>
+                        <tr class="hashtr1">
+                            <td>
+                                <el-link type="primary" @click="currentHash(blocks.nextBlockhash)">
+                                    {{blocks.nextBlockhash}}</el-link>
+                            </td>
+                        </tr>
+                        <tr class="hashtr2">
+                            <td>MerkleRoot</td>
+                        </tr>
+                        <tr class="hashtr1">
+                            <td>{{blocks.merkleRoot}}</td>
+                        </tr>
+                    </table>
+                </el-main>
+            </el-container>
+            <el-footer style="margin-left: 40px;margin-right: 80px">
+                <h3>Transactions</h3>
+                <div v-for="item in list">
+                    <table style="font-size: 12px;width: 100%" class="hashtr1">
+                        <tr>
+                            <td>
+                                <el-link type="primary" @click="currentTxHash(item.txhash)">
+                                    {{item.txhash}}</el-link>
+                            </td>
+                            <td style="text-align: right">{{JSON.stringify(new Date(item.txtime).toJSON()).replace(/\"/g,"").replace('T', ' ').substring(0,(JSON.stringify(new Date(item.txtime).toJSON()).replace(/\"/g,"").replace('T', ' ')).indexOf('.'))}}</td>
+                        </tr>
+                    </table>
+                    <table style="font-size: 14px;width: 100%">
+                        <tr>
+                            <td style="width: 45%">
+                                <table v-for="item1 in item.txdetails">
+                                    <tr v-if="item1.type==0">
+                                        <td><el-link type="primary" @click="currentAddress(item1.address)">
+                                            {{item1.address}}</el-link>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 10%">
+                                <img src="images/arrow_right_green.png">
+                            </td>
+                            <td style="width: 45%;">
+                                <table v-for="item1 in item.txdetails" style="width: 100%">
+                                    <tr v-if="item1.type==1">
+                                        <td style="width:80%">
+                                            <el-link type="primary" @click="currentAddress(item1.address)">
+                                                {{item1.address}}</el-link>
+                                        </td>
+                                        <td>{{item1.amount}}BTC</td>
+                                    </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                </div>
+            </el-footer>
+        </el-container>
+    </div>
+
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/elementui.js"></script>
+    <script src="viewmodels/BlockByHash.js"></script>
+
+</body>
+
+</html>
