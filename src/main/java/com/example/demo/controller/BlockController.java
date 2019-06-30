@@ -22,9 +22,8 @@ public class BlockController {
     private BlockService blockService;
 
     @RequestMapping("/blockIndex")
-    public List<BlockIndexDto> blockIndex() throws Throwable {
+    public List<BlockIndexDto> blockIndex()  {
         List<BlockIndexDto> blockIndexDtos =blockService.getBlockIndex();
-
         return blockIndexDtos;
     }
 
@@ -39,9 +38,9 @@ public class BlockController {
         Block block =  blockService.getBlockByHeight(height);
         return block;
     }
-    @RequestMapping("/blockList/{startDate}/{endDate}")
-    public List<BlockIndexDto> blockList(@PathVariable String startDate,@PathVariable String endDate){
-        ArrayList<BlockIndexDto> blockIndexDtos = new ArrayList<>();
+    @RequestMapping("/blockList/{nowDate}/{day}")
+    public List<BlockIndexDto> blockList(@PathVariable String nowDate,@PathVariable Integer day){
+        List<BlockIndexDto> blockIndexDtos = blockService.blockList(nowDate,day);
         return blockIndexDtos;
     }
 }

@@ -22,11 +22,11 @@ public interface TransactionDetailMapper {
 
     List<TransactionDetail> getByAddress(String address);
 
-    double getTotalReceived(String address);
+    Double getTotalReceived(String address);
 
     Integer getTxSize(String address);
 
-    double getfinalBalance(String address);
+    Double getfinalBalance(String address);
 
     Double getTxTotalInput(String txid);
 

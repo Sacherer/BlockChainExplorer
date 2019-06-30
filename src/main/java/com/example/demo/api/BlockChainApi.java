@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "bitcoin",url = "http://localhost:18332")
+@FeignClient(name = "bitcoin",url = "${bitcoin.restApi.url}")
 public interface BlockChainApi {
     @GetMapping("/rest/chaininfo.json")
     JSONObject getChinInfo();

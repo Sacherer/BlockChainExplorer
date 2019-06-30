@@ -28,4 +28,6 @@ public interface BlockMapper {
     Block searchBlockByHash(String blockhash, Integer blockchainId);
 
     Block searchBlockByHeight(int height, Integer blockchainId);
+
+    List<Block> getBlockList(String nowDate, Integer day);
 }

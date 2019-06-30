@@ -26,8 +26,14 @@ public class BlockServiceImpl implements BlockService {
     @Autowired
     private TransactionDetailMapper transactionDetailMapper;
     @Override
-    public List<BlockIndexDto> getBlockIndex() throws Throwable {
+    public List<BlockIndexDto> getBlockIndex() {
         List<Block> blocks = blockMapper.getBlockIndex();
+        List<BlockIndexDto> blockIndexDto = getBlockIndexDto(blocks);
+        return blockIndexDto;
+    }
+
+    @Override
+    public List<BlockIndexDto> getBlockIndexDto(List<Block> blocks) {
         List<BlockIndexDto> blockIndexDtos = new ArrayList<>();
         for (Block block : blocks) {
             BlockIndexDto blockIndexDto = new BlockIndexDto();
@@ -51,35 +57,41 @@ public class BlockServiceImpl implements BlockService {
     @Override
     public BlockDetailDto getBlockByHash(String blockhash) {
         Block block = blockMapper.selectByPrimaryKey(blockhash);
-        BlockDetailDto blockDetailDto = getBlockDetail(block);
-        return blockDetailDto;
+        if(block!=null){
+            BlockDetailDto blockDetailDto = getBlockDetail(block);
+            return blockDetailDto;
+        }
+        return null;
     }
 
     @Override
     public BlockDetailDto getBlockDetail(Block block) {
         List<Transaction> transaction = transactionMapper.selectByBlockHash(block.getBlockhash());
-        BlockDetailDto blockDetailDto = new BlockDetailDto();
-        blockDetailDto.setSize(block.getSize());
-        blockDetailDto.setTransactions(block.getTransactions());
-        blockDetailDto.setPrevBlockhash(block.getPrevBlockhash());
-        blockDetailDto.setOutputTotal(block.getOutputTotal());
-        blockDetailDto.setNextBlockhash(block.getNextBlockhash());
-        blockDetailDto.setMiner(block.getMiner());
-        blockDetailDto.setMerkleRoot(block.getMerkleRoot());
-        blockDetailDto.setHeight(block.getHeight());
-        blockDetailDto.setFees(block.getFees());
-        blockDetailDto.setDifficulty(block.getDifficulty());
-        blockDetailDto.setBlockhash(block.getBlockhash());
-        blockDetailDto.setBlockchainId(block.getBlockchainId());
-        blockDetailDto.setTime(block.getTime().getTime());
-        blockDetailDto.setTimestamp(block.getTimestamp().getTime());
-        ArrayList<Txs> txs = new ArrayList<>();
-        for (Transaction transaction1 : transaction) {
-            Txs txs1 = getTxs(transaction1);
-            txs.add(txs1);
+        if(transaction!=null){
+            BlockDetailDto blockDetailDto = new BlockDetailDto();
+            blockDetailDto.setSize(block.getSize());
+            blockDetailDto.setTransactions(block.getTransactions());
+            blockDetailDto.setPrevBlockhash(block.getPrevBlockhash());
+            blockDetailDto.setOutputTotal(block.getOutputTotal());
+            blockDetailDto.setNextBlockhash(block.getNextBlockhash());
+            blockDetailDto.setMiner(block.getMiner());
+            blockDetailDto.setMerkleRoot(block.getMerkleRoot());
+            blockDetailDto.setHeight(block.getHeight());
+            blockDetailDto.setFees(block.getFees());
+            blockDetailDto.setDifficulty(block.getDifficulty());
+            blockDetailDto.setBlockhash(block.getBlockhash());
+            blockDetailDto.setBlockchainId(block.getBlockchainId());
+            blockDetailDto.setTime(block.getTime().getTime());
+            blockDetailDto.setTimestamp(block.getTimestamp().getTime());
+            ArrayList<Txs> txs = new ArrayList<>();
+            for (Transaction transaction1 : transaction) {
+                Txs txs1 = getTxs(transaction1);
+                txs.add(txs1);
+            }
+            blockDetailDto.setTxs(txs);
+            return blockDetailDto;
         }
-        blockDetailDto.setTxs(txs);
-        return blockDetailDto;
+        return null;
     }
 
     @Override
@@ -115,5 +127,12 @@ public class BlockServiceImpl implements BlockService {
     @Override
     public Block searchBlockByHeight(int height, Integer blockchainId) {
         return blockMapper.searchBlockByHeight(height,blockchainId);
+    }
+
+    @Override
+    public List<BlockIndexDto> blockList(String nowDate, Integer day) {
+        List<Block> blocks = blockMapper.getBlockList(nowDate, day);
+        List<BlockIndexDto> blockIndexDto = getBlockIndexDto(blocks);
+        return blockIndexDto;
     }
 }

@@ -9,7 +9,9 @@ import com.example.demo.vo.Txs;
 import java.util.List;
 
 public interface BlockService {
-    List<BlockIndexDto> getBlockIndex() throws Throwable;
+    List<BlockIndexDto> getBlockIndex();
+
+    List<BlockIndexDto> getBlockIndexDto(List<Block> blocks);
 
     Block getBlockByHeight(Integer height);
 
@@ -22,4 +24,6 @@ public interface BlockService {
     BlockDetailDto searchBlockByHash(String blockhash, Integer blockchainId);
 
     Block searchBlockByHeight(int height, Integer blockchainId);
+
+    List<BlockIndexDto> blockList(String nowDate, Integer day);
 }

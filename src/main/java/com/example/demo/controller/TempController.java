@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.api.BlockChainApi;
+import com.example.demo.api.ExchangeRateApi;
 import com.example.demo.api.JsonRpcApi;
 import com.example.demo.mapper.BlockMapper;
 import com.example.demo.po.Block;
@@ -26,11 +27,13 @@ public class TempController {
     private BitconinSyncService syncService;
     @Autowired
     private BlockMapper blockMapper;
+    @Autowired
+    private ExchangeRateApi exchangeRateApi;
     @RequestMapping("/test")
-    public Block getTest() throws Throwable {
+    public JSONObject getTest() throws Throwable {
 //        JSONObject chinInfo = blockChainApi.getChinInfo();
 //        String s = chinInfo.toJSONString();
-        Block block = blockMapper.selectByPrimaryKey("1");
+//        Block block = blockMapper.selectByPrimaryKey("1");
 //        JSONObject transactions = blockChainApi.getTransactions("bcb39771e13d90a376aa1fd81df48f5647d34bcf62510c1cfc4645000a178e21");
 //        String s = transactions.toJSONString();
 
@@ -56,7 +59,10 @@ public class TempController {
 //        String s = blockByHash.toJSONString();
 //        JSONObject getAddress = jsonRpcApi.getAddressByHash("n2Byre52T9PZ6n8nbLVX7HgSuymW9kNxgj");
 //        String s = getAddress.toJSONString();
-        return  block;
+        JSONObject rate = exchangeRateApi.getRate();
+//        JSONObject usd = rate.getJSONObject("USD");
+//        Double last = usd.getDouble("last");
+        return  rate;
 //        syncService.syncBlockData("000000000008b24be48bcdb8b1764fa073836f7e84374606db0450109921c56e");
     }
 

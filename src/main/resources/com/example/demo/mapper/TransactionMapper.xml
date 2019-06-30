@@ -27,13 +27,18 @@
       from transaction
       where blockhash = #{blockhash,jdbcType=CHAR}
     </select>
-    <select id="getTxIndex" resultType="com.example.demo.po.Transaction">
+    <select id="getTxIndex" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List" />
       from transaction order by rand() limit 5
     </select>
     <select id="getBlockOutputTotal" resultType="java.lang.Double">
       select sum(total_output) from transaction where blockhash = #{blockhash,jdbcType=CHAR}
+    </select>
+    <select id="getMoreTx" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from transaction order by rand() limit 8
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from transaction
